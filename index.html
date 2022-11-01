@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="fr">
+<head>
+	<meta charset="utf-8">
+	<title>Cinema</title>
+
+	<link rel="stylesheet" href="css/style.css">
+	<script src="https://cdn.tailwindcss.com"></script>
+	<script src ="js/script.js" type="text/javascript"></script>
+	
+	<script src="riot/alltrie.riot" type="riot"></script>
+	<script src="riot/affichage.riot" type="riot"></script>
+	<script src="riot/page.riot" type="riot"></script>
+	<script src="riot/information.riot" type="riot"></script>
+	
+	<script src="https://cdn.jsdelivr.net/npm/riot@6.1.2/riot+compiler.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	
+</head>
+<body class="bg-gray-100">
+
+	<alltrie></alltrie>
+	<page class="mb-8"></page>
+	<hr class="bg-black"> 
+	<div id="loader"></div>
+	<affichage class="grid grid-cols-4 grid-rows-5 gap-16 w-4/5 mx-auto my-4 "></affichage>
+	
+	<information class="grid w-4/5 mx-auto"></information>
+	<acteur class="grid w-4/5 mx-auto"></acteur>
+	<script>
+		riot.compile().then(()=>{
+			riot.mount('alltrie')
+		})
+	</script>
+
+</body>
+</html>

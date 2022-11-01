@@ -1,0 +1,19 @@
+#loader {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 1;
+    width: 70px;
+    height: 70px;
+    margin: -76px 0 0 -76px;
+    border: 10px solid grey;
+    border-radius: 50%;
+    border-top: 10px solid rgb(125 211 252);
+    animation: spin 1.5s linear infinite;
+  }
+
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

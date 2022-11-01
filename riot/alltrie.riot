@@ -1,0 +1,155 @@
+<alltrie>
+
+	<li each={ item in filtre()  }>
+	</li>
+
+	<header class="flex flex-row">
+
+		<select id="select" onchange="getByGenre(this.value)" class="bg-sky-300 hover:bg-sky-200 ml-4 mr-4 mt-2 mb-2 rounded-md basis-1/5">
+			<option value="vide">----- Genre -----</option>
+			<option value="Action">Action</option>
+            <option value="Aventure">Aventure</option>
+            <option value="Animation">Animation</option>
+            <option value="Comédie">Commédie</option>
+            <option value="Crime">Crime</option>
+            <option value="Documentaire">Documantaire</option>
+            <option value="Drame">Drame</option>
+			<option value="Familial">Familial</option>
+            <option value="Fantastique">Fantastique</option>
+            <option value="Histoire">Histoire</option>
+            <option value="Horreur">Horreur</option>
+            <option value="Musique">Musique</option>
+            <option value="Mystère">Mystère</option>
+            <option value="Romance">Romance</option>
+            <option value="Science-Fiction">Science-Fiction</option>
+            <option value="Téléfilm">Téléfilm</option>
+            <option value="Thriller">Thriller</option>
+            <option value="Guerre">Guerre</option>
+			<option value="Western">Western</option>
+		</select>
+
+		<input type="text" placeholder="Rechercher " id="search" oninput={() => setFiltre("search")} class="border-2 border-black basis-1/3 mt-2 mb-2"><br>
+		
+
+		<button onclick={() => setFiltre("popular") } class="bg-sky-300 hover:bg-sky-200 ml-4 mr-4 mt-2 mb-2 rounded-md rounded-t-lg basis-1/4">
+			Populaires
+		</button>
+
+		<button onclick={() => setFiltre("top_rated") } class="bg-sky-300 hover:bg-sky-200 ml-4 mr-4 mt-2 mb-2 rounded-md basis-1/4">
+			Mieux notés
+		</button>
+
+		<button onclick={() => setFiltre("upcoming") } class="bg-sky-300 hover:bg-sky-200 ml-4 mr-4 mt-2 mb-2 rounded-md basis-1/4">
+			À venir
+		</button>
+
+		<button onclick={() => setFiltre("now_playing") } class="bg-sky-300 hover:bg-sky-200 ml-4 mr-4 mt-2 mb-2 rounded-md basis-1/4">
+			À l'affiche
+		</button>	
+
+		<select id="select_films" onchange="change_vision(this.value)" class="bg-sky-300 hover:bg-sky-200 ml-4 mr-4 mt-2 mb-2 rounded-md basis-1/5">
+			<option value="movie">Films</option>
+			<option value="tv">Série</option>
+		</select>	
+	</header>
+
+	<script>
+		export default {
+			onBeforeMount(props, state) {
+				this.state = {
+					filtre : "popular"
+				}
+			},
+			filtre(){
+				if(this.state.filtre == "popular"){
+					let all = document.getElementsByTagName("affichage")
+					all[0].innerHTML = "";
+
+					page = 1
+					trie = "popular"
+					mode ="1"
+
+					affi_page()
+					document.getElementById("loader").style.display="block"
+					setTimeout(getIDMovie, 750);
+					//getIDMovie()
+				}
+				else if(this.state.filtre == "top_rated"){
+					let all = document.getElementsByTagName("affichage")
+					all[0].innerHTML = "";
+
+					page = 1
+					trie = "top_rated"
+					mode ="1"
+
+					affi_page()
+					document.getElementById("loader").style.display="block"
+					setTimeout(getIDMovie, 750);
+					//getIDMovie()
+				}
+				else if(this.state.filtre == "upcoming"){
+					let all = document.getElementsByTagName("affichage")
+					all[0].innerHTML = "";
+
+					page = 1
+					trie = "upcoming"
+					mode ="1"
+					
+					affi_page()
+					document.getElementById("loader").style.display="block"
+					setTimeout(getIDMovie, 750);
+					//getIDMovie()
+				}
+				else if(this.state.filtre == "now_playing"){
+					let all = document.getElementsByTagName("affichage")
+					all[0].innerHTML = "";
+
+					page = 1
+					trie = "now_playing"
+					mode ="1"
+
+					affi_page()
+					document.getElementById("loader").style.display="block"
+					setTimeout(getIDMovie, 750);
+					//getIDMovie()
+				}
+				else if(this.state.filtre == "search"){
+					var recherche = document.getElementById('search').value
+					
+
+					if(recherche != ""){
+						let all = document.getElementsByTagName("affichage")
+						all[0].innerHTML = ""
+						
+						page = 1
+						search = recherche
+						mode = "2"
+
+						affi_page_search()
+						document.getElementById("loader").style.display="block"
+						setTimeout(getIDMovieSearch, 750);
+						//getIDMovieSearch()
+					}
+					else{
+						let all = document.getElementsByTagName("affichage")
+						all[0].innerHTML = "";
+
+						page = 1
+						trie = "now_playing"
+						mode ="1"
+
+						affi_page()
+						document.getElementById("loader").style.display="block"
+						setTimeout(getIDMovie, 750);
+						//getIDMovie()
+					}
+				}
+
+			},
+			setFiltre(change){
+				this.state.filtre = change;
+				this.update();
+			}
+		}
+	</script>
+</alltrie>
